@@ -1,0 +1,155 @@
+/* Fix body and navbar spacing */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('background-video.mp4') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px);
+}
+
+#main {
+    width: 100vw;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    background-color: #7a8f8975;
+    border-bottom: 1px solid #25433a;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.about-section {
+    margin-top: 100px;  /* Added margin to prevent overlap with navbar */
+    padding: 20px;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    background-color: #fff;
+    align-items: center;
+}
+.about-content{
+    margin-top: 100px;  /* Added margin to prevent overlap with navbar */
+    padding: 20px;
+    position: relative;
+    width: 50%;
+    text-align: center;
+    background-color: #fff;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;  /* Ensure navbar stays above everything */
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #ff4b5c;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #ff1a2d;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 120px 20px 50px;  /* Increased padding to prevent overlap */
+}
+
+/* Features Section - Fixed Spacing */
+.features-section {
+    max-width: 900px;
+    margin: 100px auto 50px;  /* Added margin-top to push it down */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Timeline Layout Fix */
+.timeline {
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Timeline Items - Fix Alignment */
+.timeline-item {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 80%;  /* Keep blocks within proper width */
+}
+
+/* Centered Timeline */
+.timeline-item:nth-child(odd),
+.timeline-item:nth-child(even) {
+    transform: none;  /* Removed unwanted translation */
+}
+
+/* Ensure Features Don't Overlap */
+.features-section {
+    position: relative;
+    z-index: 10;  /* Keeps it below the navbar */
+}
+
+/* Image Gallery */
+.snapshots-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.image-gallery img {
+    width: 30%;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1);
+}

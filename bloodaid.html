@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloodAid - Blood Donation Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/bgvido.mp4" type="video/mp4">
+        </video>
+    </div>
+    <header id="main">
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#snapshots">Snapshots</a>
+        </nav>
+    </header>
+
+    <section id="about" class="section" style="margin-top: 100px;">
+        <h1 class="section-heading">BloodAid - Blood Donation Platform</h1>
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>BloodAid is a web application designed to connect blood donors with recipients in real-time. 
+                        It provides an easy-to-use platform where users can register, find blood donors based on 
+                        their location, and contact them instantly. The platform ensures a smooth and secure 
+                        process for both donors and seekers.</p>
+                    <p>The application is built using the MERN stack (MongoDB, Express.js, React.js, Node.js) 
+                        and incorporates Google and LinkedIn authentication for secure user access. 
+                        It also features a dynamic donor search, secure messaging, an interactive dashboard, 
+                        and an emergency request feature for urgent blood needs.</p>
+                    <p>BloodAid aims to make blood donation easier and more accessible, ultimately saving lives 
+                        and fostering a community of altruism and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <h2 class="section-heading">Key Features</h2>
+        <div class="container">
+            <div class="project-cards">
+                <div class="project-card">
+                    <h3>🔒 User Authentication</h3>
+                    <p>Sign in with Google & LinkedIn for secure access.</p>
+                </div>
+                <div class="project-card">
+                    <h3>📍 Dynamic Donor Search</h3>
+                    <p>Find blood donors based on location in real-time.</p>
+                </div>
+                <div class="project-card">
+                    <h3>💬 Secure Messaging</h3>
+                    <p>Chat securely with donors or recipients.</p>
+                </div>
+                <div class="project-card">
+                    <h3>📊 Interactive Dashboard</h3>
+                    <p>Manage donations and track requests.</p>
+                </div>
+                <div class="project-card">
+                    <h3>⚠️ Emergency Requests</h3>
+                    <p>Urgent blood request feature for emergencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="snapshots" class="section">
+        <h2 class="section-heading">Snapshots</h2>
+        <div class="container">
+            <div class="gallery-container">
+                <div class="gallery-nav prev">←</div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="assets/dashboard.png" alt="BloodAid Dashboard">
+                        <div class="gallery-item-label">Interactive Dashboard</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/list.png" alt="Donor List">
+                        <div class="gallery-item-label">Donor Search Results</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/emergency.png" alt="Emergency Request">
+                        <div class="gallery-item-label">Emergency Request Interface</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/login.png" alt="Login Page">
+                        <div class="gallery-item-label">Login Page</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/profile.png" alt="Profile Page">
+                        <div class="gallery-item-label">Profile Page</div>
+                    </div>
+                </div>
+                <div class="gallery-nav next">→</div>
+                <div class="gallery-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal">
+        <button class="close-modal">×</button>
+        <img src="" alt="Full size image">
+    </div>
+
+    <footer class="footer">
+        <p><a href="index.html" style="color: white;">← Back to Home</a></p>
+    </footer>
+    <script src="gallery.js"></script>
+</body>
+</html>

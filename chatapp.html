@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp - Real-time Chat Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/bgvido.mp4" type="video/mp4">
+        </video>
+    </div>
+    <header id="main">
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#snapshots">Snapshots</a>
+        </nav>
+    </header>
+
+    <section id="about" class="section" style="margin-top: 100px;">
+        <h1 class="section-heading">ChatApp - Real-time Chat Platform</h1>
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>ChatApp is a modern real-time chat application that enables seamless communication between users. 
+                       Built with cutting-edge technologies, it provides a smooth and intuitive chatting experience with 
+                       features like instant messaging, group chats, and file sharing.</p>
+                    <p>The application is developed using the MERN stack (MongoDB, Express.js, React.js, Node.js) 
+                       along with Socket.IO for real-time communication. It features end-to-end encryption, 
+                       user presence detection, and message status indicators. The platform supports both one-on-one 
+                       and group conversations with multimedia sharing capabilities.</p>
+                    <p>ChatApp aims to provide a secure and efficient communication platform for both personal 
+                       and professional use, with a focus on privacy and user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <h2 class="section-heading">Key Features</h2>
+        <div class="container">
+            <div class="project-cards">
+                <div class="project-card">
+                    <h3>🔐 End-to-End Encryption</h3>
+                    <p>Secure messaging with strong encryption.</p>
+                </div>
+                <div class="project-card">
+                    <h3>👥 Group Chat</h3>
+                    <p>Create and manage group conversations.</p>
+                </div>
+                <div class="project-card">
+                    <h3>📎 File Sharing</h3>
+                    <p>Share images, documents, and media files.</p>
+                </div>
+                <div class="project-card">
+                    <h3>🟢 Online Status</h3>
+                    <p>Real-time user presence indicators.</p>
+                </div>
+                <div class="project-card">
+                    <h3>✓ Message Status</h3>
+                    <p>Sent, delivered, and read receipts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="snapshots" class="section">
+        <h2 class="section-heading">Snapshots</h2>
+        <div class="container">
+            <div class="gallery-container">
+                <div class="gallery-nav prev">←</div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="assets/chat_dashboard.png" alt="Chat Dashboard">
+                        <div class="gallery-item-label">Main Chat Interface</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/chat_group.png" alt="Group Chat">
+                        <div class="gallery-item-label">Group Chat Feature</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/chat_profile.png" alt="User Profile">
+                        <div class="gallery-item-label">User Profile Page</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/chat_settings.png" alt="Settings Page">
+                        <div class="gallery-item-label">Settings Interface</div>
+                    </div>
+                </div>
+                <div class="gallery-nav next">→</div>
+                <div class="gallery-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal">
+        <button class="close-modal">×</button>
+        <img src="" alt="Full size image">
+    </div>
+
+    <footer class="footer">
+        <p><a href="index.html" style="color: white;">← Back to Home</a></p>
+    </footer>
+    <script src="gallery.js"></script>
+</body>
+</html>
