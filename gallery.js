@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemCount = originalItems.length;
     let currentIndex = 0;
     let isAnimating = false;
-    
-    // Create navigation dots (only for original items)
+
+    // Create navigation dots
     originalItems.forEach((_, index) => {
         const dot = document.createElement('div');
         dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
@@ -37,92 +37,73 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial active state
     items[currentIndex].classList.add('active');
 
-    function smoothTransform(element, start, end, duration, onComplete) {
-        const startTime = performance.now();
-        
-        function update(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Smoother easing function
-            const easeProgress = progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-            
-            const current = start + (end - start) * easeProgress;
-            element.style.transform = `translateX(${-current}px)`;
-            
-            if (progress < 1) {
-                requestAnimationFrame(update);
-            } else {
-                isAnimating = false;
-                if (onComplete) onComplete();
-            }
-        }
-        
-        requestAnimationFrame(update);
-    }
-
-    function updateDots(index) {
-        const normalizedIndex = index % itemCount;
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === normalizedIndex);
-        });
-    }
-
-    function resetPosition() {
+    function updateGalleryPosition(index, instant = false) {
         const itemWidth = items[0].offsetWidth;
         const gap = 20;
-        
-        if (currentIndex >= itemCount) {
-            currentIndex = 0;
+        const containerWidth = gallery.parentElement.offsetWidth;
+        const offset = (containerWidth - itemWidth) / 2;
+        const position = index * (itemWidth + gap) - offset + gap;
+
+        if (instant) {
             gallery.style.transition = 'none';
-            const resetPos = currentIndex * (itemWidth + gap);
-            gallery.style.transform = `translateX(-${resetPos}px)`;
-            gallery.offsetHeight;
+            gallery.style.transform = `translateX(-${position}px)`;
+            gallery.offsetHeight; // Force reflow
             gallery.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        } else if (currentIndex < 0) {
-            currentIndex = itemCount - 1;
-            gallery.style.transition = 'none';
-            const resetPos = currentIndex * (itemWidth + gap);
-            gallery.style.transform = `translateX(-${resetPos}px)`;
-            gallery.offsetHeight;
-            gallery.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        } else {
+            gallery.style.transform = `translateX(-${position}px)`;
         }
     }
 
-    function showImage(index, direction = 0) {
+    function showImage(index) {
         if (isAnimating) return;
         isAnimating = true;
 
         items.forEach(item => item.classList.remove('active'));
         
-        // Activate both original and cloned items for smooth transition
         const normalizedIndex = ((index % itemCount) + itemCount) % itemCount;
         items[normalizedIndex].classList.add('active');
         items[normalizedIndex + itemCount]?.classList.add('active');
         
-        const itemWidth = items[0].offsetWidth;
-        const gap = 20;
-        const containerWidth = gallery.parentElement.offsetWidth;
-        const scrollPosition = normalizedIndex * (itemWidth + gap) - (containerWidth - itemWidth) / 2;
+        updateGalleryPosition(normalizedIndex);
         
-        smoothTransform(gallery, currentIndex * (itemWidth + gap), scrollPosition, 600, () => {
+        setTimeout(() => {
             currentIndex = normalizedIndex;
             updateDots(currentIndex);
-            resetPosition();
+            isAnimating = false;
+        }, 600);
+    }
+
+    function updateDots(index) {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
         });
     }
 
     function nextImage() {
-        showImage(currentIndex + 1, 1);
+        showImage(currentIndex + 1);
     }
 
     function prevImage() {
-        showImage(currentIndex - 1, -1);
+        showImage(currentIndex - 1);
     }
 
-    // Automatic sliding
+    // Reset gallery position when reaching ends
+    function checkBoundary() {
+        if (currentIndex >= itemCount) {
+            currentIndex = 0;
+            updateGalleryPosition(currentIndex, true);
+        } else if (currentIndex < 0) {
+            currentIndex = itemCount - 1;
+            updateGalleryPosition(currentIndex, true);
+        }
+    }
+
+    // Event Listeners
+    gallery.addEventListener('transitionend', () => {
+        checkBoundary();
+    });
+
+    // Autoplay functionality
     let autoplayInterval;
     
     function startAutoplay() {
@@ -137,20 +118,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners
+    // Mouse and touch events
     gallery.addEventListener('mouseenter', stopAutoplay);
     gallery.addEventListener('mouseleave', startAutoplay);
 
-    // Update click handlers with debouncing
-    let clickTimeout;
     const handleClick = (direction) => {
-        if (clickTimeout) clearTimeout(clickTimeout);
         stopAutoplay();
-        clickTimeout = setTimeout(() => {
-            if (!isAnimating) {
-                direction === 'next' ? nextImage() : prevImage();
-            }
-        }, 50);
+        if (!isAnimating) {
+            direction === 'next' ? nextImage() : prevImage();
+        }
         setTimeout(startAutoplay, 3000);
     };
 
@@ -158,15 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', () => handleClick('prev'));
 
     // Modal functionality
-    originalItems.forEach((item, index) => {
+    items.forEach((item, index) => {
         item.addEventListener('click', () => {
-            if (index === currentIndex % itemCount) {
+            const normalizedIndex = index % itemCount;
+            if (normalizedIndex === currentIndex) {
                 const img = item.querySelector('img');
                 modalImg.src = img.src;
                 modalImg.alt = img.alt;
                 modal.classList.add('active');
             } else {
-                showImage(index);
+                showImage(normalizedIndex);
             }
         });
     });
@@ -181,23 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Keyboard navigation
-    let keyTimeout;
-    document.addEventListener('keydown', (e) => {
-        if (keyTimeout) return;
-        keyTimeout = setTimeout(() => {
-            keyTimeout = null;
-            if (e.key === 'ArrowLeft') {
-                prevImage();
-            } else if (e.key === 'ArrowRight') {
-                nextImage();
-            } else if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-            }
-        }, 50);
-    });
-
-    // Touch handling with improved sensitivity
+    // Touch handling
     let touchStartX = 0;
     let touchStartTime = 0;
     
@@ -213,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const diffX = touchStartX - touchEndX;
         const diffTime = touchEndTime - touchStartTime;
         
-        // Calculate swipe velocity for more responsive touch
         const velocity = Math.abs(diffX) / diffTime;
         
         if (Math.abs(diffX) > 30 || velocity > 0.5) {
@@ -227,9 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(startAutoplay, 3000);
     }, { passive: true });
 
-    // Start autoplay on load
+    // Initialize
+    updateGalleryPosition(currentIndex);
     startAutoplay();
-    
-    // Initial positioning
-    resetPosition();
+
+    // Window resize handling
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            updateGalleryPosition(currentIndex, true);
+        }, 100);
+    });
 });
