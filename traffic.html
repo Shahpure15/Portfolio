@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Buddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="assets/bgvido.mp4" type="video/mp4">
+        </video>
+    </div>
+    <header id="main">
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#snapshots">Snapshots</a>
+            <a href="https://trafficbuddy.netlify.app/app" target="_blank" class="action-btn">Try Now</a>
+        </nav>
+    </header>
+
+    <section id="about" class="section" style="margin-top: 100px;">
+        <h1 class="section-heading">Traffic Buddy - Violation Reporting Platform</h1>
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Traffic Buddy is a collaborative project with the DCP Office Pune, designed to empower citizens to report traffic violations through a WhatsApp chatbot. 
+                        The platform streamlines the process of reporting and addressing violations, ensuring accountability and smoother traffic management.</p>
+                    <p>The backend is built using Node.js, Express.js, and Twilio for chatbot integration, while the frontend for officer operations is developed using React.js. 
+                        The platform features a 14-division login system, mapping to Pune's traffic divisions, and a central dashboard for comprehensive report management. 
+                        Division-specific logins allow officers to access and manage reports relevant to their jurisdiction.</p>
+                    <p>Traffic Buddy aims to enhance traffic law enforcement and citizen participation, fostering safer roads and a more organized traffic system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <h2 class="section-heading">Key Features</h2>
+        <div class="container">
+            <div class="project-cards">
+                <div class="project-card">
+                    <h3>🤖 WhatsApp Chatbot</h3>
+                    <p>Citizens can report violations easily via WhatsApp.</p>
+                </div>
+                <div class="project-card">
+                    <h3>🔒 Division-Wise Login</h3>
+                    <p>14-division login system for officers to access relevant reports.</p>
+                </div>
+                <div class="project-card">
+                    <h3>📊 Central Dashboard</h3>
+                    <p>Comprehensive dashboard for all reports and analytics.</p>
+                </div>
+                <div class="project-card">
+                    <h3>📍 Division-Specific Reports</h3>
+                    <p>Officers can view and manage reports specific to their division.</p>
+                </div>
+                <div class="project-card">
+                    <h3>⚙️ Backend Integration</h3>
+                    <p>Powered by Node.js, Express.js, and Twilio for seamless operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="snapshots" class="section">
+        <h2 class="section-heading">Snapshots</h2>
+        <div class="container">
+            <div class="gallery-container">
+                <div class="gallery-nav prev">←</div>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="assets/tfdash.png" alt="Central Dashboard">
+                        <div class="gallery-item-label">Central Dashboard</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/tfdash1.png" alt="Division Login">
+                        <div class="gallery-item-label">Division-Wise Login</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/tfreport.png" alt="Report View">
+                        <div class="gallery-item-label">Violation Report View</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/tfwa.png" alt="Chatbot Interface">
+                        <div class="gallery-item-label">WhatsApp Chatbot</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/tfquery.png" alt="Analytics">
+                        <div class="gallery-item-label">Analytics and Insights</div>
+                    </div>
+                </div>
+                <div class="gallery-nav next">→</div>
+                <div class="gallery-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal">
+        <button class="close-modal">×</button>
+        <img src="" alt="Full size image">
+    </div>
+
+    <footer class="footer">
+        <p><a href="index.html" style="color: white;">← Back to Home</a></p>
+    </footer>
+    <script src="gallery.js"></script>
+</body>
+</html>
